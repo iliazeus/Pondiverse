@@ -24,7 +24,7 @@ export function getCreationUrlForTool(toolUrl, id) {
 }
 
 export function getCreationImageUrl(id) {
-  return new URL(`/creations?c=${id}`, baseUrl);
+  return new URL(`/images?c=${id}`, baseUrl);
 }
 
 // without an id, gets it from query param
@@ -32,7 +32,7 @@ export async function fetchCreation(id) {
   if (id === undefined) id = new URL(window.location).searchParams.get("creation");
   if (id === null) return null;
   console.log("Fetching creation with id", id);
-  const response = await fetch(new URL(`/creations?json&c=${id}`, baseUrl));
+  const response = await fetch(new URL(`/creations?c=${id}`, baseUrl));
   if (!response.ok) throw new Error(response.statusText);
   return await response.json();
 }
